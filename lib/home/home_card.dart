@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 
 class HomeCard extends StatelessWidget {
@@ -10,8 +9,8 @@ class HomeCard extends StatelessWidget {
   @override
   Widget build(context) {
     return Container(
-      padding: EdgeInsets.only(bottom: 25),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.only(bottom: 25),
+      decoration: const BoxDecoration(
         border: Border(
           bottom: BorderSide(
             color: Color.fromRGBO(127, 127, 127, 1),
@@ -24,7 +23,7 @@ class HomeCard extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style:const TextStyle(
               color: Color.fromRGBO(0, 119, 182, 1),
               fontWeight: FontWeight.w500,
               fontSize: 20,
@@ -37,7 +36,7 @@ class HomeCard extends StatelessWidget {
                 width: 300,
                 child: Text(
                   desc,
-                  style: TextStyle(
+                  style:const TextStyle(
                     color: Color.fromRGBO(127, 127, 127, 1),
                     fontSize: 15,
                   ),
@@ -48,7 +47,7 @@ class HomeCard extends StatelessWidget {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => route!));
                 },
-                icon: Icon(Icons.arrow_forward_ios),
+                icon:const Icon(Icons.arrow_forward_ios),
               )
             ],
           )

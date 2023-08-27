@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:jagoo_latihan/home/home_card.dart';
 import 'package:jagoo_latihan/simple_calculator/simple_calculator.dart';
 import 'package:jagoo_latihan/card/card_container.dart';
+import 'package:jagoo_latihan/input_validation/input_validation.dart';
 
-class Home extends StatelessWidget {
+class  Home extends StatelessWidget {
+  const Home({ super.key});
   @override
   Widget build(context) {
     return Scaffold(
@@ -16,18 +17,32 @@ class Home extends StatelessWidget {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding:const EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            HomeCard(
+         const   HomeCard(
               title: 'Dummy UI',
               desc: 'UI Practice flutter UI and get familiar with UI Widgets',
               route: CardContainer(),
             ),
+       const     SizedBox(
+              height: 35,
+            ),
             HomeCard(
               title: 'Simple Calculator',
-              desc: 'Creating calculator app that consists add, divide, substract, multiply function',
+              desc:
+                  'Creating calculator app that consists add, divide, substract, multiply function',
               route: Calculator(),
+            ),
+         const   SizedBox(
+              height: 35,
+            ),
+              HomeCard(
+              title: 'Input Validation',
+              desc:
+                  'Play around with email input & password input',
+              route: InputValidaton(),
             ),
           ],
         ),

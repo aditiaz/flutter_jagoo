@@ -10,8 +10,10 @@ class CardContainer extends StatelessWidget {
   Widget build(context) {
     return Scaffold(
       appBar: AppBar(
+        shadowColor: Colors.white,
+        elevation: 3.0,
         backgroundColor: Colors.white,
-         automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         title: Row(
           children: [
             IconButton(
@@ -34,10 +36,10 @@ class CardContainer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -56,8 +58,14 @@ class CardContainer extends StatelessWidget {
                         ),
                       ],
                     ),
-                 IconButton(onPressed: () { Navigator.push(context,MaterialPageRoute(builder: (context)=>  LayoutCard()));},
-                 icon: Icon(Icons.arrow_forward_ios))
+                    IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LayoutCard()));
+                        },
+                        icon: const Icon(Icons.arrow_forward_ios))
                   ],
                 ),
                 const SizedBox(height: 15),
@@ -70,8 +78,8 @@ class CardContainer extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 3),
-                CardDummy(src:  'lib/assets/briefcase.svg'),
-                SizedBox(
+                const CardDummy(src: 'lib/assets/briefcase.svg'),
+                const SizedBox(
                   height: 15,
                 ),
                 Text(
@@ -82,21 +90,19 @@ class CardContainer extends StatelessWidget {
                     fontSize: 17,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    // crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      CardDummy(src:'lib/assets/briefcase.svg'),
-                      SizedBox(height: 10),
-                      CardDummy(src:'lib/assets/briefcase.svg'),
-                    ],
-                  ),
+                const Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  // crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    CardDummy(src: 'lib/assets/briefcase.svg'),
+                    SizedBox(height: 10),
+                    CardDummy(src: 'lib/assets/briefcase.svg'),
+                  ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Text(
@@ -107,7 +113,7 @@ class CardContainer extends StatelessWidget {
                     fontSize: 17,
                   ),
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CardRow(title: '1st image'),
@@ -117,7 +123,7 @@ class CardContainer extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Text(
@@ -130,12 +136,12 @@ class CardContainer extends StatelessWidget {
                 ),
                 TextButton(
                   style: TextButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(150, 211, 242, 0.1),
-                      fixedSize: Size.fromWidth(500),
+                      backgroundColor: const Color.fromRGBO(150, 211, 242, 0.1),
+                      fixedSize: const Size.fromWidth(500),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     'Press Me',
                     style: TextStyle(
                         color: Color.fromRGBO(0, 119, 182, 1),
@@ -143,7 +149,7 @@ class CardContainer extends StatelessWidget {
                         fontWeight: FontWeight.w900),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Text(
@@ -154,10 +160,10 @@ class CardContainer extends StatelessWidget {
                     fontSize: 17,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Text.rich(TextSpan(children: [
+                const Text.rich(TextSpan(children: [
                   TextSpan(
                       text: 'Email',
                       style: TextStyle(
@@ -166,10 +172,10 @@ class CardContainer extends StatelessWidget {
                           fontWeight: FontWeight.w400)),
                   TextSpan(text: ' *', style: TextStyle(color: Colors.red)),
                 ])),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
+                    Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                       child: TextField(
@@ -187,7 +193,7 @@ class CardContainer extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Text(
@@ -198,7 +204,7 @@ class CardContainer extends StatelessWidget {
                     fontSize: 14,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Row(
@@ -217,14 +223,14 @@ class CardContainer extends StatelessWidget {
                         ),
                         child: Column(children: [
                           SvgPicture.asset('lib/assets/briefcase.svg'),
-                          Text('1st Image')
+                          const Text('1st Image')
                         ]),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 15,
                     ),
-                    CardRow(
+                    const CardRow(
                       title: '2nd Image',
                     )
                   ],

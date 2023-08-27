@@ -16,6 +16,8 @@ class _TabbarExampleState extends State<LayoutCard> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          shadowColor: Colors.white,
+          elevation: 3.0,
           automaticallyImplyLeading: false,
           title: Row(
             children: [
@@ -48,14 +50,15 @@ class _TabbarExampleState extends State<LayoutCard> {
             Center(
               child: ListView.builder(
                 itemCount: 20,
-                padding: EdgeInsets.only(top: 15),
+                padding:const EdgeInsets.all( 10),
                 itemBuilder: (BuildContext context, int index) {
                   return ListBody(
                     children: [
-                      SizedBox(height: 15),
+                  const    SizedBox(height: 15),
                       Container(
+                        padding:const EdgeInsets.symmetric(horizontal: 15),
                         width: 50,
-                        child: CardDummy(src: 'lib/assets/briefcase.svg'),
+                        child: const CardDummy(src: 'lib/assets/briefcase.svg'),
                       ),
                     ],
                   );
@@ -69,10 +72,10 @@ class _TabbarExampleState extends State<LayoutCard> {
                       childAspectRatio: 3 / 2,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20),
-                      padding: EdgeInsets.all( 15),
+                  padding:const EdgeInsets.all(15),
                   itemCount: 20,
                   itemBuilder: (BuildContext ctx, index) {
-                    return CardRow(
+                    return const CardRow(
                       title: '1st Image',
                     );
                   }),
