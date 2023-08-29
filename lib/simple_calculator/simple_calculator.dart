@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jagoo_latihan/widgets/text_section.dart';
+import 'package:jagoo_latihan/widgets/vertical_padding.dart';
+import 'package:jagoo_latihan/widgets/horizontal_padidng.dart';
+import 'package:jagoo_latihan/widgets/calculator_button.dart';
 
 class Calculator extends StatefulWidget {
   const Calculator({super.key});
@@ -7,12 +11,12 @@ class Calculator extends StatefulWidget {
 }
 
 class CalculatorState extends State<Calculator> {
-  String? isPressed;
+  String? isPressed = '+';
   final _formKey = GlobalKey<FormState>();
   final _formKey2 = GlobalKey<FormState>();
   String? right;
   String? left;
-  final firstNum = TextEditingController();
+  var firstNum = TextEditingController();
   final secondNum = TextEditingController();
 
   @override
@@ -22,7 +26,7 @@ class CalculatorState extends State<Calculator> {
     super.dispose();
   }
 
-  num? result ;
+  num? result;
   num? calculate(
       {required num num1, required String operator, required num num2}) {
     switch (operator) {
@@ -41,8 +45,27 @@ class CalculatorState extends State<Calculator> {
     return result;
   }
 
+  List<Map<String, String>> history = [];
+  void addHistoryItem(String num1, String operator, String num2) {
+    Map<String, String> newItem = {
+      'Num1': num1,
+      'Operator': operator,
+      'Num2': num2,
+    };
+    history.add(newItem);
+  }
+
   @override
   Widget build(BuildContext context) {
+    String? formattedResult = result.toString();
+
+    if (result == result?.truncate()) {
+      formattedResult = result?.truncate().toString();
+    } else {
+      formattedResult = result?.toStringAsFixed(2);
+    }
+
+
     return Scaffold(
       appBar: AppBar(
         shadowColor: Colors.white,
@@ -56,7 +79,7 @@ class CalculatorState extends State<Calculator> {
               icon: const Icon(Icons.arrow_back_ios),
             ),
             const Text(
-              'Simpe Calculator',
+              'Simple Calculator',
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 23.0),
             ),
           ],
@@ -70,184 +93,98 @@ class CalculatorState extends State<Calculator> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Choose Type".toUpperCase(),
-                  style: const TextStyle(
-                    color: Color.fromRGBO(44, 212, 131, 1),
-                    fontWeight: FontWeight.w700,
-                    fontSize: 17,
-                  ),
-                ),
+                const TextSection(title: 'Choose Type'),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        fixedSize: const Size.fromWidth(100),
-                        backgroundColor: isPressed == '+'
-                            ? Color.fromARGB(24, 19, 70, 95)
-                            : Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            side: const BorderSide(
-                                width: 1, color: Color(0xFFD9D9D9))),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          isPressed = '+';
-                        });
-                      },
-                      child: Text(
-                        'Add',
-                        style: TextStyle(
-                            color: isPressed == '+'
-                                ? const Color.fromRGBO(0, 119, 182, 1)
-                                : Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        fixedSize: const Size.fromWidth(100),
-                        backgroundColor: isPressed == '-'
-                            ? const Color.fromRGBO(150, 211, 242, 0.1)
-                            : Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            side: const BorderSide(
-                                width: 1, color: Color(0xFFD9D9D9))),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          isPressed = '-';
-                        });
-                      },
-                      child: Text(
-                        'Subtract',
-                        style: TextStyle(
-                            color: isPressed == '-'
-                                ? const Color.fromRGBO(0, 119, 182, 1)
-                                : Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: isPressed == '*'
-                            ? const Color.fromRGBO(150, 211, 242, 0.1)
-                            : Colors.transparent,
-                        fixedSize: const Size.fromWidth(100),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            side: const BorderSide(
-                                width: 1, color: Color(0xFFD9D9D9))),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          isPressed = '*';
-                        });
-                      },
-                      child: Text(
-                        'Multiply',
-                        style: TextStyle(
-                            backgroundColor: isPressed == '*'
-                                ? const Color.fromRGBO(150, 211, 242, 0.1)
-                                : Colors.transparent,
-                            color: isPressed == '*'
-                                ? const Color.fromRGBO(0, 119, 182, 1)
-                                : Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
+                    CalculatorButton(
+                        operator: '+',
+                        isPressed: isPressed!,
+                        onPresssed: () {
+                          setState(() {
+                            isPressed = '+';
+                          });
+                        },
+                        title: 'Add'),
+                    const HorizontalPadding(),
+                    CalculatorButton(
+                        isPressed: isPressed!,
+                        onPresssed: () {
+                          setState(() {
+                            isPressed = '-';
+                          });
+                        },
+                        operator: '-',
+                        title: 'Subtract'),
+                    const HorizontalPadding(),
+                    CalculatorButton(
+                        isPressed: isPressed!,
+                        onPresssed: () {
+                          setState(() {
+                            isPressed = '*';
+                          });
+                        },
+                        operator: '*',
+                        title: 'Multiply')
                   ],
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: isPressed == '/'
-                        ? const Color.fromRGBO(150, 211, 242, 0.1)
-                        : Colors.transparent,
-                    fixedSize: const Size.fromWidth(100),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        side: const BorderSide(
-                            width: 1, color: Color(0xFFD9D9D9))),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      isPressed = '/';
-                    });
-                  },
-                  child: Text(
-                    'Divide',
-                    style: TextStyle(
-                        color: isPressed == '/'
-                            ? const Color.fromRGBO(0, 119, 182, 1)
-                            : Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
+                CalculatorButton(
+                    isPressed: isPressed!,
+                    onPresssed: () {
+                      setState(() {
+                        isPressed = '/';
+                      });
+                    },
+                    operator: '/',
+                    title: 'Divide'),
+                VerticalPadding(),
                 Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                        width: 80,
-                        height: 80,
-                        child: Form(
-                          key: _formKey,
-                          child: TextFormField(
-                            controller: firstNum,
-                            keyboardType: TextInputType.number,
-                            maxLength: 20,
-                            decoration: InputDecoration(
-                              counterStyle: const TextStyle(
-                                height: double.minPositive,
-                              ),
-                              counterText: "",
-                              border: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    width: 3,
-                                    color: Color.fromRGBO(0, 119, 182, 1),
-                                    style: BorderStyle.solid),
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    width: 2,
-                                    color: Color.fromRGBO(0, 119, 182, 1),
-                                    style: BorderStyle.solid),
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
+                      width: 60,
+                      height: 60,
+                      child: Form(
+                        key: _formKey,
+                        child: TextFormField(
+                          controller: firstNum,
+                          keyboardType: TextInputType.number,
+                          maxLength: 20,
+                          decoration: InputDecoration(
+                            counterStyle: const TextStyle(
+                              height: double.minPositive,
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                setState(() {
-                                  left = 'Left Form Cannot be empty';
-                                });
-                                return '';
-                              }
-                              return null;
-                            },
+                            counterText: "",
+                            border: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  width: 3,
+                                  color: Color.fromRGBO(0, 119, 182, 1),
+                                  style: BorderStyle.solid),
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  width: 2,
+                                  color: Color.fromRGBO(0, 119, 182, 1),
+                                  style: BorderStyle.solid),
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
                           ),
-                        )),
-                    const SizedBox(
-                      width: 10,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              setState(() {
+                                left = 'Left Form Cannot be empty';
+                              });
+                              return '';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
                     ),
+                    HorizontalPadding(),
                     SizedBox(
-                      height: 70,
+                      height: 60,
                       width: 35,
                       child: Text(
                         isPressed == '+'
@@ -256,18 +193,14 @@ class CalculatorState extends State<Calculator> {
                                 ? '-'
                                 : isPressed == '*'
                                     ? 'x'
-                                    : isPressed == '/'
-                                        ? '/'
-                                        : '...',
+                                    : '/',
                         style: const TextStyle(fontSize: 40),
                       ),
                     ),
-                    const SizedBox(
-                      width: 7,
-                    ),
+                    HorizontalPadding(),
                     SizedBox(
-                      width: 80,
-                      height: 80,
+                      width: 60,
+                      height: 60,
                       child: Form(
                         key: _formKey2,
                         child: TextFormField(
@@ -306,9 +239,7 @@ class CalculatorState extends State<Calculator> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
+                    HorizontalPadding(),
                     const SizedBox(
                       height: 70,
                       child: Text(
@@ -316,14 +247,12 @@ class CalculatorState extends State<Calculator> {
                         style: TextStyle(fontSize: 40),
                       ),
                     ),
-                    const SizedBox(
-                      width: 30,
-                    ),
+                  HorizontalPadding(),
                     SizedBox(
                       height: 50,
                       child: Text(
-                      result != null ?  result!.toStringAsFixed(2): '....',
-                        style: TextStyle(fontSize: 40),
+                        result != null ? formattedResult! : '....',
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
                   ],
@@ -350,53 +279,64 @@ class CalculatorState extends State<Calculator> {
                             fontWeight: FontWeight.w400,
                             color: right != null || left != null
                                 ? Colors.red
-                                : Color.fromRGBO(127, 127, 127, 1),
+                                : const Color.fromRGBO(127, 127, 127, 1),
                           ),
                         ),
                       ]),
                 ),
-                const SizedBox(
-                  height: 15,
-                ),
+                VerticalPadding(),
+                const TextSection(title: 'History'),
                 Text(
-                  "History".toUpperCase(),
+                  history.isEmpty ? "No history found" : '',
                   style: const TextStyle(
-                    color: Color.fromRGBO(44, 212, 131, 1),
-                    fontWeight: FontWeight.w700,
-                    fontSize: 17,
+                      color: Color(0xFFD9D9D9),
+                      fontWeight: FontWeight.w700,
+                      fontSize: 17,
+                      fontStyle: FontStyle.italic),
+                ),
+                SingleChildScrollView(
+                  physics: ScrollPhysics(),
+                  child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: history.length,
+                    padding: const EdgeInsets.all(10),
+                    itemBuilder: (BuildContext context, int index) {
+                      Map<String, String> historyItem = history[index];
+                      return ListBody(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                '${historyItem['Num1']} ${historyItem['Operator']} ${historyItem['Num2']}',
+                                style: const TextStyle(
+                                    fontSize: 25, color: Colors.black),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    firstNum.text = historyItem['Num1']!;
+                                    isPressed = historyItem['Operator'];
+                                    secondNum.text = historyItem['Num2']!;
+                                  });
+                                },
+                                child: const Text(
+                                  'reapply',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontStyle: FontStyle.italic,
+                                      color: Color.fromRGBO(0, 119, 182, 1),
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(bottom: 25),
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Color.fromRGBO(127, 127, 127, 1),
-                        width: .9,
-                      ),
-                    ),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '11 X 20',
-                        style: TextStyle(fontSize: 25),
-                      ),
-                      Text(
-                        'reapply',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontStyle: FontStyle.italic,
-                            color: Color.fromRGBO(0, 119, 182, 1),
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                )
               ],
             ),
             TextButton(
@@ -416,9 +356,7 @@ class CalculatorState extends State<Calculator> {
                       num1: num.parse(firstNum.text),
                       operator: isPressed!,
                       num2: num.parse(secondNum.text));
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Processing Data')),
-                  );
+                  addHistoryItem(firstNum.text, isPressed!, secondNum.text);
                 }
               },
               child: const Text(

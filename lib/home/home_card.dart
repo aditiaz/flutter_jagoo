@@ -32,7 +32,7 @@ class HomeCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
+              SizedBox(
                 width: 300,
                 child: Text(
                   desc,

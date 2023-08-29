@@ -13,7 +13,6 @@ class InputValidatonState extends State<InputValidaton> {
   String? email;
   final myName = TextEditingController();
   final myEmail = TextEditingController();
- 
 
   @override
   void dispose() {
@@ -21,6 +20,7 @@ class InputValidatonState extends State<InputValidaton> {
     myEmail.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +43,7 @@ class InputValidatonState extends State<InputValidaton> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,21 +52,22 @@ class InputValidatonState extends State<InputValidaton> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                  name != null ? 'Hi there ${myName.text}' : 'Hi There!',
-
-                    style:const TextStyle(
+                    name != null ? 'Hi there ${myName.text}' : 'Hi There!',
+                    style: const TextStyle(
                         color: Color.fromRGBO(0, 119, 182, 1),
                         fontSize: 19,
                         fontWeight: FontWeight.w600),
                   ),
-                   Text(
-                     email != null ? 'Your email addres was  ${myEmail.text}' :  'Please enter your name and email :)',
-                    style:const TextStyle(
+                  Text(
+                    email != null
+                        ? 'Your email addres was  ${myEmail.text}'
+                        : 'Please enter your name and email :)',
+                    style: const TextStyle(
                       color: Color.fromRGBO(127, 127, 127, 1),
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   const Text.rich(
                     TextSpan(children: [
@@ -80,53 +81,49 @@ class InputValidatonState extends State<InputValidaton> {
                     ]),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
-                  SizedBox(
-                    width: 350,
-                    height: 55,
-                    child: Form(
-                      key: _formKey,
-                      child: TextFormField(
-                        controller: myName,
-                        maxLength: 20,
-                        decoration: InputDecoration(
-                          
-                          hintText: 'Enter  your name ...',
-                          counterStyle: const TextStyle(
-                            height: double.minPositive,
-                          ),
-                          prefixIcon: const Icon(
-                            Icons.person_2_outlined,
-                            color: Color.fromRGBO(0, 119, 182, 1),
-                          ),
-                          counterText: "",
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                width: 2,
-                                color: Color.fromRGBO(0, 119, 182, 1),
-                                style: BorderStyle.solid),
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                width: 2,
-                                color: Color.fromRGBO(0, 119, 182, 1),
-                                style: BorderStyle.solid),
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
+                  Form(
+                    key: _formKey,
+                    child: TextFormField(
+                      controller: myName,
+                      maxLength: 20,
+                      decoration: InputDecoration(
+                        contentPadding:const EdgeInsets.symmetric(vertical: 20),
+                        hintText: 'Enter  your name ...',
+                        counterStyle: const TextStyle(
+                          height: double.minPositive,
                         ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Name cannot be empty';
-                          }
-                          return null;
-                        },
+                        prefixIcon: const Icon(
+                          Icons.person_2_outlined,
+                          color: Color.fromRGBO(0, 119, 182, 1),
+                        ),
+                        counterText: "",
+                        border: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              width: 2,
+                              color: Color.fromRGBO(0, 119, 182, 1),
+                              style: BorderStyle.solid),
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              width: 2,
+                              color: Color.fromRGBO(0, 119, 182, 1),
+                              style: BorderStyle.solid),
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Name cannot be empty';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   const Text.rich(
                     TextSpan(children: [
@@ -142,48 +139,42 @@ class InputValidatonState extends State<InputValidaton> {
                   const SizedBox(
                     height: 20,
                   ),
-                  SizedBox(
-                    width: 350,
-                    height: 55,
-                    
-                    child: Form(
-                      key: _formKey2,
-                      child: TextFormField(
-                        controller: myEmail,
-                        maxLength: 20,
-                        decoration: InputDecoration(
-                          
-                          hintText: 'Enter  your email ...',
-                          counterStyle: const TextStyle(
-                            height: double.minPositive,
-                          ),
-                          prefixIcon: const Icon(
-                            Icons.email_outlined,
-                            color: Color.fromRGBO(0, 119, 182, 1),
-                          ),
-                          counterText: "",
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                width: 2,
-                                color: Color.fromRGBO(0, 119, 182, 1),
-                                style: BorderStyle.solid),
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                width: 2,
-                                color: Color.fromRGBO(0, 119, 182, 1),
-                                style: BorderStyle.solid),
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
+                  Form(
+                    key: _formKey2,
+                    child: TextFormField(
+                      controller: myEmail,
+                      maxLength: 20,
+                      decoration: InputDecoration(
+                        hintText: 'Enter  your email ...',
+                        counterStyle: const TextStyle(
+                          height: double.minPositive,
                         ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Email cannot be empty';
-                          }
-                          return null;
-                        },
+                        prefixIcon: const Icon(
+                          Icons.email_outlined,
+                          color: Color.fromRGBO(0, 119, 182, 1),
+                        ),
+                        counterText: "",
+                        border: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              width: 2,
+                              color: Color.fromRGBO(0, 119, 182, 1),
+                              style: BorderStyle.solid),
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              width: 2,
+                              color: Color.fromRGBO(0, 119, 182, 1),
+                              style: BorderStyle.solid),
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Email cannot be empty';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                 ],

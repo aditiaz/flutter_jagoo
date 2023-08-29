@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jagoo_latihan/home/home_card.dart';
 import 'package:jagoo_latihan/simple_calculator/simple_calculator.dart';
-import 'package:jagoo_latihan/card/card_container.dart';
+import 'package:jagoo_latihan/dummy_ui/card_container.dart';
 import 'package:jagoo_latihan/input_validation/input_validation.dart';
 
 class  Home extends StatelessWidget {
@@ -18,15 +18,15 @@ class  Home extends StatelessWidget {
       ),
       body: Container(
         padding:const EdgeInsets.all(20),
-        child: Column(
+        child:const Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-         const   HomeCard(
+           HomeCard(
               title: 'Dummy UI',
               desc: 'UI Practice flutter UI and get familiar with UI Widgets',
               route: CardContainer(),
             ),
-       const     SizedBox(
+          SizedBox(
               height: 35,
             ),
             HomeCard(
@@ -35,7 +35,7 @@ class  Home extends StatelessWidget {
                   'Creating calculator app that consists add, divide, substract, multiply function',
               route: Calculator(),
             ),
-         const   SizedBox(
+          SizedBox(
               height: 35,
             ),
               HomeCard(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jagoo_latihan/card/card.dart';
-import 'package:jagoo_latihan/card/card_row.dart';
+import 'package:jagoo_latihan/dummy_ui/cards/card.dart';
+import 'package:jagoo_latihan/dummy_ui/cards/card_row.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:jagoo_latihan/card/layoutCard/layout_card.dart';
+import 'package:jagoo_latihan/dummy_ui/layout_card/layout_card.dart';
 
 class CardContainer extends StatelessWidget {
   const CardContainer({super.key});

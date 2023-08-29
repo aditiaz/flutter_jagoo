@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jagoo_latihan/card/card.dart';
-import 'package:jagoo_latihan/card/card_row.dart';
+import 'package:jagoo_latihan/dummy_ui/cards/card.dart';
+import 'package:jagoo_latihan/dummy_ui/cards/card_row.dart';
 
 class LayoutCard extends StatefulWidget {
   const LayoutCard({Key? key}) : super(key: key);
@@ -50,13 +50,13 @@ class _TabbarExampleState extends State<LayoutCard> {
             Center(
               child: ListView.builder(
                 itemCount: 20,
-                padding:const EdgeInsets.all( 10),
+                padding: const EdgeInsets.all(10),
                 itemBuilder: (BuildContext context, int index) {
                   return ListBody(
                     children: [
-                  const    SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       Container(
-                        padding:const EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         width: 50,
                         child: const CardDummy(src: 'lib/assets/briefcase.svg'),
                       ),
@@ -72,7 +72,7 @@ class _TabbarExampleState extends State<LayoutCard> {
                       childAspectRatio: 3 / 2,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20),
-                  padding:const EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   itemCount: 20,
                   itemBuilder: (BuildContext ctx, index) {
                     return const CardRow(

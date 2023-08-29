@@ -8,7 +8,6 @@ class CardDummy extends StatelessWidget {
   @override
   Widget build(context) {
     return Container(
-      // margin: EdgeInsets.only(top: 15),
       padding: const EdgeInsets.only(top: 15),
       decoration: BoxDecoration(
         border: Border.all(
@@ -24,14 +23,12 @@ class CardDummy extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           SvgPicture.asset(src),
-          Column(
+        const  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            // mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
+            SizedBox(
                 width: 145,
-                // decoration: BoxDecoration(color: Colors.blue),
-                child: const Text(
+                child:  Text(
                   'How can I be Flutter Developer Expert?',
                   style: TextStyle(
                     fontWeight: FontWeight.w900,
@@ -39,18 +36,16 @@ class CardDummy extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
+               SizedBox(
                 height: 18,
               ),
-              Container(
-                // decoration: BoxDecoration(color: Colors.red),
+              SizedBox(
                 width: 250,
-                child: const Row(
+                child:  Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      // crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
                           'Jill LepEore',

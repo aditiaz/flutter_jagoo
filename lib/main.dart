@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
        debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromRGBO(0, 119, 182, 1)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromRGBO(0, 119, 182, 1)),
         useMaterial3: true,
       ),
-      home:  Home(),
+      home:const  Home(),
     );
   }
 }
